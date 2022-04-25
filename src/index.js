@@ -6,12 +6,21 @@ const songsList = [
 
 const playButton = document.querySelector(".play");
 const pauseButton = document.querySelector(".pause");
+const nextButton = document.querySelector(".next");
+const prevButton = document.querySelector(".prev");
 
-const url = songsList[0];
-const song = new Audio(url);
-console.log(song);
+let url = songsList[0];
+let song = new Audio(url);
+let currentSong = 0;
+
+const prepareSong = () => {
+  song.pause();
+  url = songsList[currentSong];
+  song = new Audio(url);
+};
 
 const playSong = () => {
+  prepareSong();
   song.play();
   updateSongData();
 };
@@ -20,8 +29,22 @@ const pauseSong = () => {
   song.pause();
 };
 
+const prevSong = () => {
+  if (currentSong > 0) {
+    currentSong--;
+  }
+  playSong();
+};
+
+const nextSong = () => {
+  if (currentSong < songsList.length - 1) {
+    currentSong++;
+  }
+  playSong();
+};
+
 const updateSongData = () => {
-  const name = songsList[0];
+  const name = songsList[currentSong];
   const cleanSong = cleanName(name);
   document.querySelector(".song-name").textContent = cleanSong;
   const artist = "Monkey Island";
@@ -38,3 +61,5 @@ const cleanName = (url) => {
 
 playButton.addEventListener("click", () => playSong());
 pauseButton.addEventListener("click", () => pauseSong());
+prevButton.addEventListener("click", () => prevSong());
+nextButton.addEventListener("click", () => nextSong());

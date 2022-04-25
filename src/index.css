@@ -32,6 +32,11 @@
   height: 50px;
 }
 
+.controls svg:hover {
+  fill: gold;
+  cursor: pointer;
+}
+
 .player {
   background-color: #282828;
   display: grid;
