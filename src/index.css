@@ -65,5 +65,11 @@
 }
 
 .progress-bar {
-  background-color: #333;
+  background-color: #282828;
+  display: flex;
+  justify-content: center;
+}
+
+progress {
+  accent-color: rgb(255 255 255);
 }
